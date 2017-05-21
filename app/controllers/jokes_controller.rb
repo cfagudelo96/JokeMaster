@@ -17,7 +17,9 @@ class JokesController < ApplicationController
     jokes = Joke.all
     jokes = jokes.where(subject: params[:joke_subject]) if params[:joke_subject].present?
     jokes = jokes.where(category: params[:joke_category]) if params[:joke_category].present?
-    render json: jokes.sample
+    joke = jokes.sample
+    response = {speech: joke.content, displayText: joke.content}
+    render json: response
   end
 
   # POST /jokes
